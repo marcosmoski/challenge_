@@ -8,6 +8,8 @@ export class Phone {
   public rating: number;
   public thumbnail: number;
   public images: string[];
+  public discountPercentage: number;
+  public brand: string;
 
   constructor(props: Omit<Phone, 'id'>, id?: string) {
     Object.assign(this, props);

@@ -2,5 +2,6 @@ import { User } from "../entities/User";
 
 export interface IUsersRepository {
   findByEmail(email: string): Promise<User>;
-  save(user: User): Promise<void>
+  findByEmailAndPassword(email: string, password: string): Promise<User> 
+  init(): Promise<void>
 }

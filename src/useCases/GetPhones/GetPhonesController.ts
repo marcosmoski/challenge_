@@ -1,5 +1,6 @@
 import { Request, Response } from 'express'
 import { GetPhonesUseCase } from './GetPhonesUseCase'
+import { Phone } from '../../entities/Phone';
 
 export class GetPhonesController {
 
@@ -9,17 +10,9 @@ export class GetPhonesController {
   }
 
   async handle(request: Request, response: Response): Promise<Response> {
-
-    const { name, email, password } = request.body;
-
     try {
-      await this.getPhonesUseCase.execute({
-        name,
-        email,
-        password
-      });
-
-      return response.status(201).send();
+      const phones = await this.getPhonesUseCase.execute();
+      return response.status(201).json(phones);
     } catch (err) {
       return response.status(400).json({
         message: err.message || 'Unexpected error.'

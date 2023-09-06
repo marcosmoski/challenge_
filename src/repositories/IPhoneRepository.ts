@@ -1,5 +1,6 @@
 import { Phone } from "../entities/Phone";
 
 export interface IPhoneRepository {
-  findPhones(email: string): Promise<Phone>;
+  findPhones(): Promise<Record<string, Phone[]>>;
+  init(): Promise<void>
 }

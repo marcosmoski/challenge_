@@ -1,0 +1,84 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Uber API",
+    "description": "Move your app forward with the Uber API",
+    "version": "1.0.0"
+  },
+  "host": "api.sunrise.com",
+  "schemes": [
+    "https",
+    "http"
+  ],
+  "basePath": "/v1",
+  "produces": [
+    "application/json"
+  ],
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http", 
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+
+  "paths": {
+    "/auth": {
+      "post": {
+        "summary": "Authenticate an user on api",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object", 
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "format": "email"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+           "401": {
+            "description": "Unauthorized"
+           }, 
+           "500": {
+            "description": "Internal server error"
+           }
+        }
+      }
+    },
+    "/phones": {
+      "get": {
+        "security": [{
+          "bearerAuth": []
+        }],
+        "summary": "Return phones grouped by brand and sorted by price, when the final price is with discount applied",
+        "description": "Optional extended description in Markdown.",
+      
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+          "description": "Unauthorized"
+          }, 
+          "500": {
+          "description": "Internal server error"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,14 +1,14 @@
 
-import { PostgresUsersRepository } from "../../repositories/implementations/PostgresUserRepository";
+import { PhoneRepository } from "../../repositories/implementations/PhoneRepository";
 import { GetPhonesController } from "./GetPhonesController";
 import { GetPhonesUseCase } from "./GetPhonesUseCase";
 
-const postgresUsersRepository = new PostgresUsersRepository();
+const phonesRepository = new PhoneRepository();
 
 
-const createUserUseCase = new GetPhonesUseCase(postgresUsersRepository);
+const getPhonesUseCase = new GetPhonesUseCase(phonesRepository);
 
 
-const createUserController = new GetPhonesController(createUserUseCase);
+const getPhonesController = new GetPhonesController(getPhonesUseCase);
 
-export { createUserController }
+export { getPhonesController }
